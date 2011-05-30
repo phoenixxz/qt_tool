@@ -1,23 +1,27 @@
  #include <QtGui>
 
- #include "dialog.h"
+#include "dialog.h"
+#include "threadcomsend.h"
 
  Dialog::Dialog()
  {
      createMenu();
+     ThreadComSend *threadComSend = new ThreadComSend();
      //createHorizontalGroupBox();
      createGridGroupBox();
      //createFormGroupBox();
 
-     bigEditor = new QTextEdit;
-     bigEditor->setPlainText(tr("This widget takes up all the remaining space "
-                                "in the top-level layout."));
+     //bigEditor = new QTextEdit;
+     //bigEditor->setPlainText(tr("This widget takes up all the remaining space "
+                  //              "in the top-level layout."));
 
      buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok
                                       | QDialogButtonBox::Cancel);
 
      connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
      connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+     //connect(comSend,SIGNAL(clicked()),this,SLOT(reject()));
+     connect(comSend,SIGNAL(clicked()),threadComSend,SLOT(myslot()));
 
      //QVBoxLayout *mainLayout = new QVBoxLayout;
      QHBoxLayout *mainLayout = new QHBoxLayout;
@@ -30,7 +34,7 @@
      //mainLayout->addWidget(buttonBox);
      setLayout(mainLayout);
 
-     setWindowTitle(tr("Basic Layouts"));
+     setWindowTitle(tr("GW-TOOLS"));
  }
 
  void Dialog::createMenu()
