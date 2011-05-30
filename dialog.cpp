@@ -1,10 +1,13 @@
- #include <QtGui>
-
+#include <QtGui>
 #include "dialog.h"
 #include "threadcomsend.h"
+#include "threadnetrecv.h"
 
- Dialog::Dialog()
- {
+Dialog::Dialog()
+{
+
+     ThreadNetRecv mythread;
+     mythread.run();
      createMenu();
      ThreadComSend *threadComSend = new ThreadComSend();
      //createHorizontalGroupBox();

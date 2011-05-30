@@ -1,0 +1,14 @@
+#include<QThread>
+#include <QUdpSocket>
+class ThreadNetRecv:public QThread
+{
+    public:
+	ThreadNetRecv();
+    public slots:
+	void recvSlot();
+    public:
+	void run();
+    private:
+	QUdpSocket *udpSocket;
+	QString buf[];
+};
