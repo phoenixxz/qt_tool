@@ -1,17 +1,22 @@
 #include<iostream>
 #include<QThread>
-class ThreadComSend:public QThread
+#include<fcntl.h>
+
+class ThreadTtySend:public QThread
 {
     Q_OBJECT
     public:
-//	ThreadComSend(QPushButton *botton);
-	ThreadComSend();
-	~ThreadComSend();
+	ThreadTtySend();
+	~ThreadTtySend();
     public slots:
-	void myslot();
-
+	void ttySend();
+    protected:
+	void run();
+    public:
+	int ttyOpen(int fd);
+	int ttyClose(int fd);
+	int ttySetAttr(int fd);
+	int ttyWrite();
     private:
-	int fd;
-	
-
+	int ttyfd;
 };

@@ -9,6 +9,7 @@
 #include <QThread>
 #include <iostream>
 #include <QString>
+#include"threadcomsend.h"
 
 class QAction;
 class QDialogButtonBox;
@@ -61,6 +62,7 @@ class Dialog : public QDialog
 	QComboBox *paudComboBox;
 	//QUdpSocket *udpSocket;
 	QUdpSocket *udpSocket;
+	ThreadTtySend *ttySend;
 	QVariant v;
 
 	QMenu *fileMenu;

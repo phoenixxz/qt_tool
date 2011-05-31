@@ -1,12 +1,12 @@
 #include <QtGui>
 #include "dialog.h"
-#include "threadcomsend.h"
 Dialog::Dialog()
 {
 
      createMenu();
 //     count=0;
      v=QVariant(0);
+     ttySend = new ThreadTtySend();
      
      //createHorizontalGroupBox();
      createGridGroupBox();

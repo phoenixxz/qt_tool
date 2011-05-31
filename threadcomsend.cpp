@@ -1,13 +1,25 @@
 #include<threadcomsend.h>
-ThreadComSend::ThreadComSend()
+ThreadTtySend::ThreadTtySend()
 {
+    ttyfd=open("/dev/ttyS0",O_RDWR);
+    if(ttyfd<0)
+    {
+	std::cout<<"+++++++++++++++++d\n";
+
+    }
     std::cout<<"Hello,World\n";
 }
-ThreadComSend::~ThreadComSend()
+ThreadTtySend::~ThreadTtySend()
 {
     std::cout<<"bye,World\n";
 }
-void ThreadComSend::myslot()
+void ThreadTtySend::ttySend()//slot
+{
+    std::cout<<"this is slot";
+    start();
+}
+void ThreadTtySend::run()
 {
     std::cout<<"this is slot";
 }
+

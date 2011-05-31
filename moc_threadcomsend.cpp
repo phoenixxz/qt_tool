@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'threadcomsend.h'
 **
-** Created: Tue May 31 12:00:14 2011
+** Created: Tue May 31 17:55:19 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.6.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
-static const uint qt_meta_data_ThreadComSend[] = {
+static const uint qt_meta_data_ThreadTtySend[] = {
 
  // content:
        4,       // revision
@@ -36,40 +36,40 @@ static const uint qt_meta_data_ThreadComSend[] = {
        0        // eod
 };
 
-static const char qt_meta_stringdata_ThreadComSend[] = {
-    "ThreadComSend\0\0myslot()\0"
+static const char qt_meta_stringdata_ThreadTtySend[] = {
+    "ThreadTtySend\0\0ttySend()\0"
 };
 
-const QMetaObject ThreadComSend::staticMetaObject = {
-    { &QThread::staticMetaObject, qt_meta_stringdata_ThreadComSend,
-      qt_meta_data_ThreadComSend, 0 }
+const QMetaObject ThreadTtySend::staticMetaObject = {
+    { &QThread::staticMetaObject, qt_meta_stringdata_ThreadTtySend,
+      qt_meta_data_ThreadTtySend, 0 }
 };
 
 #ifdef Q_NO_DATA_RELOCATION
-const QMetaObject &ThreadComSend::getStaticMetaObject() { return staticMetaObject; }
+const QMetaObject &ThreadTtySend::getStaticMetaObject() { return staticMetaObject; }
 #endif //Q_NO_DATA_RELOCATION
 
-const QMetaObject *ThreadComSend::metaObject() const
+const QMetaObject *ThreadTtySend::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
 }
 
-void *ThreadComSend::qt_metacast(const char *_clname)
+void *ThreadTtySend::qt_metacast(const char *_clname)
 {
     if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_ThreadComSend))
-        return static_cast<void*>(const_cast< ThreadComSend*>(this));
+    if (!strcmp(_clname, qt_meta_stringdata_ThreadTtySend))
+        return static_cast<void*>(const_cast< ThreadTtySend*>(this));
     return QThread::qt_metacast(_clname);
 }
 
-int ThreadComSend::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int ThreadTtySend::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QThread::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: myslot(); break;
+        case 0: ttySend(); break;
         default: ;
         }
         _id -= 1;
