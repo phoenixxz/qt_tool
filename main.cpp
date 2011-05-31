@@ -1,6 +1,5 @@
 #include <QApplication>
 #include "dialog.h"
-#include "threadnetrecv.h"
 
 int main(int argc, char *argv[])
 {

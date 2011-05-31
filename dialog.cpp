@@ -1,15 +1,12 @@
 #include <QtGui>
 #include "dialog.h"
 #include "threadcomsend.h"
-#include "threadnetrecv.h"
-
 Dialog::Dialog()
 {
 
-     ThreadNetRecv mythread;
-     mythread.run();
      createMenu();
-     ThreadComSend *threadComSend = new ThreadComSend();
+     count=0;
+     
      //createHorizontalGroupBox();
      createGridGroupBox();
      //createFormGroupBox();
@@ -24,7 +21,10 @@ Dialog::Dialog()
      connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
      connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
      //connect(comSend,SIGNAL(clicked()),this,SLOT(reject()));
-     connect(comSend,SIGNAL(clicked()),threadComSend,SLOT(myslot()));
+     udpSocket=new QUdpSocket(this);
+     //udpSocket->bind(QHostAddress::LocalHost,9999);
+     udpSocket->bind(9999);
+     connect(udpSocket,SIGNAL(readyRead()),this,SLOT(processPendingDatagrams()));
 
      //QVBoxLayout *mainLayout = new QVBoxLayout;
      QHBoxLayout *mainLayout = new QHBoxLayout;
@@ -81,7 +81,6 @@ Dialog::Dialog()
 
      smallEditor = new QTextEdit;
      smallEditor->setPlainText(tr("This widget takes up about two thirds of the "    "grid layout."));
-     //////////////////////////////
      numPacket = new QLineEdit;
      comSend = new QPushButton(tr("&send"),this);
      packLabel =new QLabel(tr("packSec"));
@@ -131,8 +130,6 @@ Dialog::Dialog()
      gridGroupBox1->setLayout(layout1);
      /**************grdgroupbox 2*****************************************/
 
-
-
  }
 
  void Dialog::createFormGroupBox()
@@ -144,3 +141,17 @@ Dialog::Dialog()
      layout->addRow(new QLabel(tr("Line 3:")), new QSpinBox);
      formGroupBox->setLayout(layout);
  }
+void Dialog::processPendingDatagrams()
+{
+    count++;
+    QByteArray datagram;
+    do{
+	datagram.resize(udpSocket->pendingDatagramSize());
+	udpSocket->readDatagram(datagram.data(),datagram.size());
+    }while(udpSocket->hasPendingDatagrams());
+    //textBrowser->setText(datagram.data().toString());
+    textBrowser->setText(datagram.data());
+    //std::cout<<count<<"heeellll";
+//    resize(100,200);
+ //   show();
+}

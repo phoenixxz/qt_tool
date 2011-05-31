@@ -1,55 +1,69 @@
 #ifndef DIALOG_H
- #define DIALOG_H
+#define DIALOG_H
 
- #include <QDialog>
+#include<QDialog>
+#include<QtCore>
+#include<QtNetwork/QAbstractSocket>
+#include<QtNetwork/QUdpSocket>
+#include<QtNetwork/QHostAddress>
+#include <QThread>
+#include <iostream>
+#include <QString>
 
- class QAction;
- class QDialogButtonBox;
- class QGroupBox;
- class QLabel;
- class QLineEdit;
- class QMenu;
- class QMenuBar;
- class QPushButton;
- class QTextEdit;
- class QTextBrowser;
- class QComboBox;
+class QAction;
+class QDialogButtonBox;
+class QGroupBox;
+class QLabel;
+class QLineEdit;
+class QMenu;
+class QMenuBar;
+class QPushButton;
+class QTextEdit;
+class QTextBrowser;
+class QComboBox;
+class QUdpSocket;
 
- class Dialog : public QDialog
- {
-     Q_OBJECT
+class Dialog : public QDialog
+{
+    Q_OBJECT
 
- public:
-     Dialog();
+    public:
+	Dialog();
+	private slots:
+	    void processPendingDatagrams();
 
- private:
-     void createMenu();
-     void createHorizontalGroupBox();
-     void createGridGroupBox();
-     void createFormGroupBox();
 
-     enum { NumGridRows = 3, NumButtons = 4 };
+    private:
+	void createMenu();
+	void createHorizontalGroupBox();
+	void createGridGroupBox();
+	void createFormGroupBox();
 
-     QTextBrowser *textBrowser,*textBrowser1;
-     QMenuBar *menuBar;
-     QGroupBox *horizontalGroupBox;
-     QGroupBox *gridGroupBox,*gridGroupBox1;
-     QGroupBox *formGroupBox;
-     QTextEdit *smallEditor;
-     QTextEdit *bigEditor;
-     QLabel *labels[NumGridRows];
-     QLineEdit *lineEdits[NumGridRows];
-     QPushButton *buttons[NumButtons];
-     QDialogButtonBox *buttonBox;
-     /************************/
-     QLineEdit *numPacket,*netRecv,*numRecvLineEdit,*numSendLineEdit,*rateLineEdit;
-     QPushButton *comSend;
-     QLabel *packLabel;
-     QLabel *netrecvLabel,*numSendLabel,*numRecvLabel,*rateLabel,*tempLabel;
-     QComboBox *paudComboBox;
+	enum { NumGridRows = 3, NumButtons = 4 };
 
-     QMenu *fileMenu;
-     QAction *exitAction;
- };
+	QTextBrowser *textBrowser,*textBrowser1;
+	QMenuBar *menuBar;
+	QGroupBox *horizontalGroupBox;
+	QGroupBox *gridGroupBox,*gridGroupBox1;
+	QGroupBox *formGroupBox;
+	QTextEdit *smallEditor;
+	QTextEdit *bigEditor;
+	QLabel *labels[NumGridRows];
+	QLineEdit *lineEdits[NumGridRows];
+	QPushButton *buttons[NumButtons];
+	QDialogButtonBox *buttonBox;
+	/************************/
+	int count;
+	QLineEdit *numPacket,*netRecv,*numRecvLineEdit,*numSendLineEdit,*rateLineEdit;
+	QPushButton *comSend;
+	QLabel *packLabel;
+	QLabel *netrecvLabel,*numSendLabel,*numRecvLabel,*rateLabel,*tempLabel;
+	QComboBox *paudComboBox;
+	//QUdpSocket *udpSocket;
+	QUdpSocket *udpSocket;
 
- #endif
+	QMenu *fileMenu;
+	QAction *exitAction;
+};
+
+#endif
