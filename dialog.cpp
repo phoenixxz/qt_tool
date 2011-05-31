@@ -5,7 +5,8 @@ Dialog::Dialog()
 {
 
      createMenu();
-     count=0;
+//     count=0;
+     v=QVariant(0);
      
      //createHorizontalGroupBox();
      createGridGroupBox();
@@ -143,7 +144,8 @@ Dialog::Dialog()
  }
 void Dialog::processPendingDatagrams()
 {
-    count++;
+    v = v.toInt() + 1;
+    numRecvLineEdit->setText(v.toString());
     QByteArray datagram;
     do{
 	datagram.resize(udpSocket->pendingDatagramSize());

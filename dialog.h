@@ -61,6 +61,7 @@ class Dialog : public QDialog
 	QComboBox *paudComboBox;
 	//QUdpSocket *udpSocket;
 	QUdpSocket *udpSocket;
+	QVariant v;
 
 	QMenu *fileMenu;
 	QAction *exitAction;
