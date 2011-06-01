@@ -6,7 +6,6 @@ Dialog::Dialog()
      createMenu();
 //     count=0;
      v=QVariant(0);
-     ttySend = new ThreadTtySend();
      
      //createHorizontalGroupBox();
      createGridGroupBox();
@@ -23,9 +22,9 @@ Dialog::Dialog()
      connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
      //connect(comSend,SIGNAL(clicked()),this,SLOT(reject()));
      udpSocket=new QUdpSocket(this);
-     //udpSocket->bind(QHostAddress::LocalHost,9999);
      udpSocket->bind(9999);
      connect(udpSocket,SIGNAL(readyRead()),this,SLOT(processPendingDatagrams()));
+     connect(comSend,SIGNAL(clicked()),this,SLOT(processTtySendButton()));
 
      //QVBoxLayout *mainLayout = new QVBoxLayout;
      QHBoxLayout *mainLayout = new QHBoxLayout;
@@ -133,15 +132,15 @@ Dialog::Dialog()
 
  }
 
- void Dialog::createFormGroupBox()
- {
+void Dialog::createFormGroupBox()
+{
      formGroupBox = new QGroupBox(tr("Form layout"));
      QFormLayout *layout = new QFormLayout;
      layout->addRow(new QLabel(tr("Line 1:")), new QLineEdit);
      layout->addRow(new QLabel(tr("Line 2, long text:")), new QComboBox);
      layout->addRow(new QLabel(tr("Line 3:")), new QSpinBox);
      formGroupBox->setLayout(layout);
- }
+}
 void Dialog::processPendingDatagrams()
 {
     v = v.toInt() + 1;
@@ -156,4 +155,11 @@ void Dialog::processPendingDatagrams()
     //std::cout<<count<<"heeellll";
 //    resize(100,200);
  //   show();
+}
+void Dialog::processTtySendButton()
+{
+    ttySend = new ThreadTtySend();
+    ttySend->start();
+    //exit(0);
+
 }

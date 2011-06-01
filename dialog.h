@@ -32,6 +32,7 @@ class Dialog : public QDialog
 	Dialog();
 	private slots:
 	    void processPendingDatagrams();
+	    void processTtySendButton();
 
 
     private:
