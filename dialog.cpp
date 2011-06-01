@@ -158,7 +158,7 @@ void Dialog::processPendingDatagrams()
 }
 void Dialog::processTtySendButton()
 {
-    ttySend = new ThreadTtySend();
+    ttySend = new ThreadTtySend(numSendLineEdit);
     ttySend->start();
     //exit(0);
 

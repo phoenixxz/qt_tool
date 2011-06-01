@@ -1,6 +1,9 @@
 #include<threadcomsend.h>
-ThreadTtySend::ThreadTtySend()
+#include<QtCore>
+
+ThreadTtySend::ThreadTtySend(QLineEdit *le)
 {
+    tle=le;
     ttyfd=open("/dev/ttyS0",O_RDWR);
     if(ttyfd<0)
     {
@@ -26,9 +29,21 @@ void ThreadTtySend::run()
     //int speed_arr[] = {B115200, B38400, B19200, B9600, B4800, B2400, B1200, B300};
     //int name_arr[] = {115200, 38400, 19200, 9600, 4800, 2400, 1200, 300};
     setSpeed(ttyfd,115200);
-    for (i = 0; i < str.size(); ++i)
+
+    QVariant numttysend;
+    numttysend=QVariant(0);
+    numttysend=numttysend.toInt()+1;
+    while(1)
     {
-	write(ttyfd,&str.at(i),1);
+	for (i = 0; i < str.size(); ++i)
+	{
+	    write(ttyfd,&str.at(i),1);
+	}
+	numttysend = numttysend.toInt()+1;
+	tle->setText(numttysend.toString());
+	
+	//usleep(30000);
+	usleep(300000);
     }
     std::cout<<"this is slot";
 }
