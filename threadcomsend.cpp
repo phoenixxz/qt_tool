@@ -24,8 +24,10 @@ void ThreadTtySend::ttySend()//slot
 void ThreadTtySend::run()
 {
     int i;
-    static const QChar data[4] = { 0x0055, 0x006e, 0x10e3, 0x03a3 };
-    QString str(data, 4);
+    static const QChar data[25] = { 0xaa, 0x55, 0xff, 0xff,0xff,0xff,0xcf,0x91,\
+	0xff,0xff,0xff,0xff,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,\
+	0xaa,0xcc };
+    QString str(data, 25);
     //int speed_arr[] = {B115200, B38400, B19200, B9600, B4800, B2400, B1200, B300};
     //int name_arr[] = {115200, 38400, 19200, 9600, 4800, 2400, 1200, 300};
     setSpeed(ttyfd,115200);
@@ -43,7 +45,8 @@ void ThreadTtySend::run()
 	tle->setText(numttysend.toString());
 	
 	//usleep(30000);
-	usleep(300000);
+	//usleep(300000);
+	sleep(3);
     }
     std::cout<<"this is slot";
 }
