@@ -1,6 +1,6 @@
 #include<threadcomsend.h>
 #include<QtCore>
-
+#define INTERVAL 1
 ThreadTtySend::ThreadTtySend(QLineEdit *le)
 {
     tle=le;
@@ -8,7 +8,6 @@ ThreadTtySend::ThreadTtySend(QLineEdit *le)
     if(ttyfd<0)
     {
 	std::cout<<"+++++++++++++++++d\n";
-
     }
     std::cout<<"Hello,World\n";
 }
@@ -95,98 +94,98 @@ void ThreadTtySend::run()
 	}
 	numttysend = numttysend.toInt()+1;
 	tle->setText(numttysend.toString());
-	sleep(1);
+        sleep(INTERVAL);
 	for (i = 0; i < str_2.size(); ++i)
 	{
 	    write(ttyfd,&str_2.at(i),1);
 	}
 	numttysend = numttysend.toInt()+1;
 	tle->setText(numttysend.toString());
-	sleep(1);
+        sleep(INTERVAL);
 	for (i = 0; i < str_3.size(); ++i)
 	{
 	    write(ttyfd,&str_3.at(i),1);
 	}
 	numttysend = numttysend.toInt()+1;
 	tle->setText(numttysend.toString());
-	sleep(1);
+        sleep(INTERVAL);
 	for (i = 0; i < str_4.size(); ++i)
 	{
 	    write(ttyfd,&str_4.at(i),1);
 	}
 	numttysend = numttysend.toInt()+1;
 	tle->setText(numttysend.toString());
-	sleep(1);
+        sleep(INTERVAL);
 	for (i = 0; i < str_5.size(); ++i)
 	{
 	    write(ttyfd,&str_5.at(i),1);
 	}
 	numttysend = numttysend.toInt()+1;
 	tle->setText(numttysend.toString());
-	sleep(1);
+        sleep(INTERVAL);
 	for (i = 0; i < str_6.size(); ++i)
 	{
 	    write(ttyfd,&str_6.at(i),1);
 	}
 	numttysend = numttysend.toInt()+1;
 	tle->setText(numttysend.toString());
-	sleep(1);
+        sleep(INTERVAL);
 	for (i = 0; i < str_7.size(); ++i)
 	{
 	    write(ttyfd,&str_7.at(i),1);
 	}
 	numttysend = numttysend.toInt()+1;
 	tle->setText(numttysend.toString());
-	sleep(1);
+        sleep(INTERVAL);
 	for (i = 0; i < str_8.size(); ++i)
 	{
 	    write(ttyfd,&str_8.at(i),1);
 	}
 	numttysend = numttysend.toInt()+1;
 	tle->setText(numttysend.toString());
-	sleep(1);
+        sleep(INTERVAL);
 	for (i = 0; i < str_9.size(); ++i)
 	{
 	    write(ttyfd,&str_9.at(i),1);
 	}
 	numttysend = numttysend.toInt()+1;
 	tle->setText(numttysend.toString());
-	sleep(1);
+        sleep(INTERVAL);
 	for (i = 0; i < str_10.size(); ++i)
 	{
 	    write(ttyfd,&str_10.at(i),1);
 	}
 	numttysend = numttysend.toInt()+1;
 	tle->setText(numttysend.toString());
-	sleep(1);
+        sleep(INTERVAL);
 	for (i = 0; i < str_11.size(); ++i)
 	{
 	    write(ttyfd,&str_11.at(i),1);
 	}
 	numttysend = numttysend.toInt()+1;
 	tle->setText(numttysend.toString());
-	sleep(1);
+        sleep(INTERVAL);
 	for (i = 0; i < str_12.size(); ++i)
 	{
 	    write(ttyfd,&str_12.at(i),1);
 	}
 	numttysend = numttysend.toInt()+1;
 	tle->setText(numttysend.toString());
-	sleep(1);
+        sleep(INTERVAL);
 	for (i = 0; i < str_13.size(); ++i)
 	{
 	    write(ttyfd,&str_13.at(i),1);
 	}
 	numttysend = numttysend.toInt()+1;
 	tle->setText(numttysend.toString());
-	sleep(1);
+        sleep(INTERVAL);
 	for (i = 0; i < str_14.size(); ++i)
 	{
 	    write(ttyfd,&str_14.at(i),1);
 	}
 	numttysend = numttysend.toInt()+1;
 	tle->setText(numttysend.toString());
-	sleep(1);
+        sleep(INTERVAL);
 
 //	numttysend = numttysend.toInt()+1;
 //	tle->setText(numttysend.toString());
@@ -201,7 +200,7 @@ void ThreadTtySend::setSpeed(int fd, int speed)
 {
     int speed_arr[] = {B115200, B38400, B19200, B9600, B4800, B2400, B1200, B300};
     int name_arr[] = {115200, 38400, 19200, 9600, 4800, 2400, 1200, 300};
-    unsigned int   i;
+    unsigned int i;
     int   status;
     struct termios Opt;
     tcgetattr(fd, &Opt);
@@ -215,7 +214,7 @@ void ThreadTtySend::setSpeed(int fd, int speed)
 	    status = tcsetattr(fd, TCSANOW, &Opt);
 	    if (status != 0) 
 	    {   
-	//	perror("tcsetattr fd1");
+        //	perror("tcsetattr fd1");
 		return;    
 	    }   
 	    tcflush(fd,TCIOFLUSH);  

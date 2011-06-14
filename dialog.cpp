@@ -4,8 +4,7 @@ Dialog::Dialog()
 {
 
      createMenu();
-//     count=0;
-     v=QVariant(0);
+     cntUdpRecv=QVariant(0);
      
      //createHorizontalGroupBox();
      createGridGroupBox();
@@ -45,8 +44,14 @@ Dialog::Dialog()
      menuBar = new QMenuBar;
 
      fileMenu = new QMenu(tr("&File"), this);
+     updateMenu = new QMenu(tr("&Update"), this);
+     chartMenu=new QMenu(tr("&Chart"), this);
      exitAction = fileMenu->addAction(tr("E&xit"));
+     updateAction = updateMenu->addAction(tr("U&pdate"));
+     chartAction = chartMenu->addAction(tr("C&hart"));
      menuBar->addMenu(fileMenu);
+     menuBar->addMenu(updateMenu);
+     menuBar->addMenu(chartMenu);
 
      connect(exitAction, SIGNAL(triggered()), this, SLOT(accept()));
  }
@@ -143,8 +148,8 @@ void Dialog::createFormGroupBox()
 }
 void Dialog::processPendingDatagrams()
 {
-    v = v.toInt() + 1;
-    numRecvLineEdit->setText(v.toString());
+    cntUdpRecv = cntUdpRecv.toInt() + 1;
+    numRecvLineEdit->setText(cntUdpRecv.toString());
     QByteArray datagram;
     do{
 	datagram.resize(udpSocket->pendingDatagramSize());

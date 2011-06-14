@@ -30,10 +30,10 @@ class Dialog : public QDialog
 
     public:
 	Dialog();
-	private slots:
-	    void processPendingDatagrams();
-	    void processTtySendButton();
 
+    private slots:
+        void processPendingDatagrams();
+        void processTtySendButton();
 
     private:
 	void createMenu();
@@ -64,10 +64,10 @@ class Dialog : public QDialog
 	//QUdpSocket *udpSocket;
 	QUdpSocket *udpSocket;
 	ThreadTtySend *ttySend;
-	QVariant v;
+        QVariant cntUdpRecv;
 
-	QMenu *fileMenu;
-	QAction *exitAction;
+        QMenu *fileMenu,*updateMenu,*chartMenu;
+        QAction *exitAction,*updateAction,*chartAction;
 };
 
 #endif
