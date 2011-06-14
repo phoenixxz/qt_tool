@@ -161,5 +161,4 @@ void Dialog::processTtySendButton()
     ttySend = new ThreadTtySend(numSendLineEdit);
     ttySend->start();
     //exit(0);
-
 }
