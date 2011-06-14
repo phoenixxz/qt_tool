@@ -56,10 +56,10 @@ class Dialog : public QDialog
 	QDialogButtonBox *buttonBox;
 	/************************/
 	int count;
-	QLineEdit *numPacket,*netRecv,*numRecvLineEdit,*numSendLineEdit,*rateLineEdit;
+        QLineEdit *numPacket,*netRecv,*numRecvLineEdit,*numSendLineEdit,*rateLineEdit,*numLostLineEdit,*numLostRateLineEdit;
 	QPushButton *comSend;
 	QLabel *packLabel;
-	QLabel *netrecvLabel,*numSendLabel,*numRecvLabel,*rateLabel,*tempLabel;
+        QLabel *netrecvLabel,*numSendLabel,*numRecvLabel,*rateLabel,*tempLabel,*numLostLabel,*numLostRateLabel;
 	QComboBox *paudComboBox;
 	//QUdpSocket *udpSocket;
 	QUdpSocket *udpSocket;

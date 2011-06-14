@@ -30,12 +30,12 @@ Dialog::Dialog()
      mainLayout->setMenuBar(menuBar);
      //mainLayout->addWidget(horizontalGroupBox);
      mainLayout->addWidget(gridGroupBox);
-     mainLayout->addWidget(gridGroupBox1);
+
+     /*mainLayout->addWidget(gridGroupBox1);*/
     // mainLayout->addWidget(formGroupBox);
     // mainLayout->addWidget(bigEditor);
      //mainLayout->addWidget(buttonBox);
      setLayout(mainLayout);
-
      setWindowTitle(tr("GW-TOOLS"));
  }
 
@@ -87,9 +87,13 @@ Dialog::Dialog()
      smallEditor = new QTextEdit;
      smallEditor->setPlainText(tr("This widget takes up about two thirds of the "    "grid layout."));
      numPacket = new QLineEdit;
+     numLostLineEdit=new QLineEdit;
      comSend = new QPushButton(tr("&send"),this);
      packLabel =new QLabel(tr("packSec"));
      netrecvLabel =new QLabel("Net receive");
+     numLostLabel =new QLabel("numLost");
+     numLostRateLabel =new QLabel("numLostRate");
+     numLostRateLineEdit=new QLineEdit;
 
      paudComboBox= new QComboBox;
      paudComboBox->addItem(tr("115200"));
@@ -105,7 +109,7 @@ Dialog::Dialog()
      layout->addWidget(textBrowser, 6, 3, 3,6);
      layout->setColumnStretch(1, 10);
      layout->setColumnStretch(2, 20);
-     gridGroupBox->setLayout(layout);
+
      /**************grdgroupbox 1*****************************************/
 
      /**************grdgroupbox 2*****************************************/
@@ -121,11 +125,15 @@ Dialog::Dialog()
      rateLineEdit =new QLineEdit("",this);
      
      //layout1->addWidget(numSendLineEdit, 3,8);
-     layout1->addWidget(numSendLabel, 0,9);
-     layout1->addWidget(tempLabel, 80,9);
-     layout1->addWidget(numSendLineEdit, 0,10);
-     layout1->addWidget(numRecvLabel, 1,9);
-     layout1->addWidget(numRecvLineEdit, 1,10);
+     //layout1->addWidget(numSendLabel, 0,9);
+     layout->addWidget(numSendLabel, 0,13);
+     layout->addWidget(numLostLabel, 2,13);
+     layout->addWidget(numLostRateLabel, 3,13);
+     layout->addWidget(numLostRateLineEdit, 3,18);
+     layout->addWidget(numSendLineEdit, 0,18);
+     layout->addWidget(numRecvLabel, 1,13);
+     layout->addWidget(numRecvLineEdit, 1,18);
+     layout->addWidget(numLostLineEdit, 2,18);
      layout1->addWidget(rateLabel, 2,9);
      layout1->addWidget(rateLineEdit, 2,10);
      layout1->setColumnStretch(1, 10);
@@ -133,6 +141,7 @@ Dialog::Dialog()
      layout1->setRowStretch(0, 20);
      layout1->setRowStretch(0, 20);
      gridGroupBox1->setLayout(layout1);
+     gridGroupBox->setLayout(layout);
      /**************grdgroupbox 2*****************************************/
 
  }
